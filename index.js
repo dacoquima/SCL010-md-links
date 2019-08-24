@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 
-module.exports = () => {
-  // ...
-};
+// const mdLinks = require('./md-links.js');
+// console.log(yourMarkdown);
 
+// module.exports = () => {
+//   // ...
+// };
+
+const process = require('process');
+process.argv.forEach((val, index) => {
+  console.log(`${index}: ${val}`);
+});
 
 // preguntar si es mejor hacerlo en otro JS 
 //let mdLinks = require('./README.md')   
