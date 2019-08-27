@@ -11,6 +11,11 @@
     "eslint": "^6.2.1",
     "eslint-plugin-jest": "^22.15.1",
     "fetch": "^1.1.0",
-    "jest": "^24.9.0"
+    "filehound": "^1.17.3",
+    "jest": "^24.9.0",
+    "mark-markdown-down": "^1.0.0",
+    "markdown-link-extractor": "^1.2.1",
+    "md-url-extractor": "^1.0.1",
+    "node-fetch": "^2.6.0"
   }
 }
