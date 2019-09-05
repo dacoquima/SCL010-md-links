@@ -5,6 +5,7 @@ const fs = require("fs");
 const markdownLinkExtractor = require("markdown-link-extractor");
 const FileHound = require("filehound");
 const marked = require("marked");
+const chalk = require('chalk');
 
 const mdLinks = (userPath, options) => {
   return new Promise((resolve, reject) => {
@@ -93,11 +94,12 @@ const readFile = path => {
         marked(data, { 
         renderer: renderer 
         });
-        resolve(links);
+        resolve(links);        
       }
     });
   });
 };
+
 
 // Respuesta a opción sin opciones [{ href, text, file }]
 const nonOptions = path => {
@@ -114,6 +116,27 @@ const nonOptions = path => {
     });
 };
 
+
+// Respuesta a stats & validate /* Total: 3 Unique: 3 Broken: 1 */
+
+const statsAndValidate = path => {
+  let counter = 0;
+  readFile(path)
+    .then(links => { 
+      links.forEach(link => {
+      fetchUrl(link.href, function(error, meta, body) {
+          if ( meta.status > 299 ){
+            counter++;
+            console.log(counter)
+          }
+    })
+  }) 
+})
+    .catch(err => {
+      console.log(err);
+    });  }  
+
+
 // Respuesta a opción validate (./some/example.md http://google.com/ ok 301 Google)
 const validate = path => {
   readFile(path)
@@ -122,9 +145,9 @@ const validate = path => {
         fetchUrl(link.href, function(error, meta, body) {   
           console.log(path);    
           console.log(link.href);
-          if (meta.status >= 200 && meta.status <= 299) {
+          if ( meta.status < 299) {
             console.log('OK')
-          } else if (meta.status <= 200 || meta.status >= 299){
+          } else if (meta.status > 299){    
             console.log('FAIL')
           }
           console.log(meta.status);
@@ -136,13 +159,28 @@ const validate = path => {
     });
 };
 
+// Respuesta a opción stats /* Total: 3 Unique: 3 */
+  const stats = path => {
+  readFile(path)
+  .then(links => {
+      let totalLinks = links.length;
+      console.log('Total:', totalLinks);    
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      }
+
+
 module.exports = {
   mdLinks,
   checkFile,
   readFile,
-  validate,
   isDirectory,
   getFilesFromDirectory,
   isMd,
-  nonOptions
+  nonOptions,
+  statsAndValidate,
+  validate,
+  stats
 };

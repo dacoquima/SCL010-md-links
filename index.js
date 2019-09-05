@@ -31,7 +31,18 @@ if (
   Broken: 1 */
   options.validate = true;
   options.stats = true;
-  console.log("stats y validate");} 
+  console.log("stats y validate");
+  if (mdLinksJS.isDirectory(userPath)) {
+    mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
+      console.log(fileList);
+      fileList.forEach(file => {
+        mdLinksJS.statsAndValidate(file);
+      });
+    });} 
+    
+else {
+  mdLinksJS.statsAndValidate(userPath);
+}} 
   
   else if (
   process.argv[3] === "--validate" ||
@@ -40,6 +51,7 @@ if (
 { /* ./some/example.md http://google.com/ ok 301 Google */
   options.validate = true;
   console.log("validate");
+
   if (mdLinksJS.isDirectory(userPath)) {
       mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
         console.log(fileList);
@@ -59,9 +71,19 @@ if (
 { /* Total: 3
   Unique: 3 */
   options.stats = true;
-  console.log("stats"); } 
-  
-  else if (process.argv[1] && process.argv[2]) 
+  console.log("stats"); 
+  if (mdLinksJS.isDirectory(userPath)) {
+    mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
+      fileList.forEach(file => {
+        mdLinksJS.stats(file);
+        });
+      });
+    } else {
+      mdLinksJS.stats(userPath);
+    }
+}
+
+else if (process.argv[1] && process.argv[2]) 
 {/* [{ href, text, file }] */
 if (mdLinksJS.isDirectory(userPath)) {
   mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
