@@ -74,7 +74,7 @@ if (userPathMd[1] === "md") {
       reject(err);
     })}})}
 
-// Leyendo archivo y adquiriendo la "Opción sin opción" [{ href, text, file }]
+// Leyendo archivo y adquiriendo la "opción sin opción" [{ href, text, file }]
 const readFile = path => {
   return new Promise((resolve, reject) => {
     fs.readFile(path, "utf-8", (err, data) => {
@@ -99,16 +99,35 @@ const readFile = path => {
   });
 };
 
-// Respuesta a opción validate (./some/example.md http://google.com/ ok 301 Google)
-const validate = path => {
+// Respuesta a opción sin opciones [{ href, text, file }]
+const nonOptions = path => {
   readFile(path)
     .then(links => {
       console.log(links);
       links.forEach(link => {
-        //let extractorLinks = markdownLinkExtractor(fs.readFileSync(link.file).toString());
-        fetchUrl(link.href, function(error, meta, body) {
-          //console.log("EL LINK ES:", link);
-          //console.log("FETCH STATUS:", meta.status);
+        fetchUrl(link.href, function(error, meta, body) {          
+        });
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+// Respuesta a opción validate (./some/example.md http://google.com/ ok 301 Google)
+const validate = path => {
+  readFile(path)
+    .then(links => {
+      links.forEach(link => {
+        fetchUrl(link.href, function(error, meta, body) {   
+          console.log(path);    
+          console.log(link.href);
+          if (meta.status >= 200 && meta.status <= 299) {
+            console.log('OK')
+          } else if (meta.status <= 200 || meta.status >= 299){
+            console.log('FAIL')
+          }
+          console.log(meta.status);
         });
       });
     })
@@ -124,24 +143,6 @@ module.exports = {
   validate,
   isDirectory,
   getFilesFromDirectory,
-  isMd
+  isMd,
+  nonOptions
 };
-
-
-//Si path del usuario es un .md
-// //Extrayendo links y viendo status
-// links.forEach(function (link) {
-//     function checkFile (res) {
-//         if (res.ok) {
-//             // console.log(res.statusText)
-//             // console.log(res.status)
-//             // console.log(res.url)
-//             arrayLinks.push(res.statusText, res.status, res.url)
-//             //console.log(arrayLinks); /* Muestra links y sus estados */
-//         } else {
-//             //console.log('ERROR');
-//         }
-//     }
-//     fetch(link)
-//         .then(checkFile);
-//  })

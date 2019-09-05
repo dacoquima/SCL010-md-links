@@ -66,7 +66,7 @@ if (
 if (mdLinksJS.isDirectory(userPath)) {
   mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
     fileList.forEach(file => {
-      mdLinksJS.validate(file);
+      mdLinksJS.nonOptions(file);
       });
     });
   } else {
