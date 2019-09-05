@@ -20,8 +20,6 @@ let userPath = process.argv[2];
 if (!path.isAbsolute(userPath)) {
   userPath = path.normalize(userPath);
   userPath = path.resolve(userPath);
-  console.log("Ruta absoluta", userPath);
-  
 }
 
 // Viendo si el path ingresado es .md o directorio
@@ -31,7 +29,7 @@ const checkFile  = userPath => {
       console.log('Agrega un directorio válido o un archivo markdown ".md"');
     } else if (stats.isDirectory()) {
       getFilesFromDirectory(userPath); 
-      //console.log(userPath);
+      console.log(userPath);
     } else isMd(userPath);    
     })}
 
@@ -50,7 +48,7 @@ const getFilesFromDirectory = userPath => {
     .find()
     .then(res => { 
       resolve(res) 
-    //  console.log(res);
+      console.log(res);
     })
     .catch(err => {
       console.log(err);
@@ -107,8 +105,8 @@ const validate = path => {
       links.forEach(link => {
         //let extractorLinks = markdownLinkExtractor(fs.readFileSync(link.file).toString());
         fetchUrl(link.href, function(error, meta, body) {
-          //console.log("EL LINK ES:", link);
-          //console.log("FETCH STATUS:", meta.status);
+          console.log("EL LINK ES:", link);
+          console.log("FETCH STATUS:", meta.status);
         });
       });
     })
