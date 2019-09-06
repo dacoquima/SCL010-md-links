@@ -5,7 +5,7 @@
 Md-links es una librería de npm que debe ser implementada en Javascript y ser ejecutada en Node.js, esta tiene la función de poder reconocer archivos **markdown** y poder entregar el estado de los links que este contenga.
 
 
-<img src= img/gif.gif>  
+![enter image description here](https://lh3.googleusercontent.com/uNYh9gXQ5aEaWT58lL7bfhfIS1VxLH13nKhXYDsajl0rbOT1u9dEB6NruPFm89BHd-PX88EpqbVX5A)
   
 
 ### Instalación ⚙
@@ -76,8 +76,13 @@ Para el correcto funcionamiento, debes tener instalado [Node.js](https://nodejs.
 ## Diagrama de flujo 📝
 
 
-<img src= img/diagrama.png>  
-  
+![enter image description here](https://lh3.googleusercontent.com/t_HfDNHi0-vpX2tWfIfFzybqJeP6GyXGDO-67it9a5bLyvc6WByvcpegaSklPljl541iYOaN_k1QMQ)  
+
+
+## npm 📌
+
+-  [Links del paquete](https://www.npmjs.com/package/md-dm-links)
+
 
 ## Desarrolladora 💻
 *Daniela Quintana Martínez*

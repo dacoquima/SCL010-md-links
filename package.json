@@ -1,6 +1,6 @@
 { 
-  "name": "@danimalistica/md-links",
-  "version": "1.0.0",
+  "name": "md-dm-links",
+  "version": "1.2.0",
   "description": "Libreria para ver status de links en archivos markdown",
   "scripts": {
     "test": "jest --coverage",
