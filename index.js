@@ -91,14 +91,13 @@ if (mdLinksJS.isDirectory(userPath)) {
       });
     });
   } else {
+    mdLinksJS.isMd(userPath);
     mdLinksJS.readFile(userPath);
   }}
 
 mdLinksJS
   .mdLinks(userPath, options)
   .then(res => {
-    console.log("$$$$$$ soy res de la funcion mdLinks bb", res);
   })
   .catch(err => {
-    //console.log("mdLinks error in index.js", err);
   });
