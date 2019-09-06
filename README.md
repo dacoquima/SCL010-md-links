@@ -81,7 +81,7 @@ Para el correcto funcionamiento, debes tener instalado [Node.js](https://nodejs.
 
 ## npm 📌
 
--  [Links del paquete](https://www.npmjs.com/package/md-dm-links)
+-  [Link del paquete](https://www.npmjs.com/package/md-dm-links)
 
 
 ## Desarrolladora 💻
