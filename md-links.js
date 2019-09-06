@@ -9,10 +9,23 @@ const chalk = require('chalk');
 
 const mdLinks = (userPath, options) => {
   return new Promise((resolve, reject) => {
-    checkFile(userPath);
-    // console.log("userPath in mdLinks", userPath);
-    // console.log("options en mdLinks", options);
-    // resolve("funciona fx mdLinks :B")
+    resolve
+    .then(res => { 
+      resolve(res) 
+      checkFile(userPath);
+      readFile(userPath);
+      isDirectory(userPath);
+      getFilesFromDirectory(userPath);
+      isMd(userPath);
+      nonOptions(options);
+      statsAndValidate(options);
+      validate(options);
+      stats(options);
+    })
+    .catch(err => {
+      console.log(err);
+      reject(err)
+    });
   });
 };
 
@@ -21,8 +34,7 @@ let userPath = process.argv[2];
 if (!path.isAbsolute(userPath)) {
   userPath = path.normalize(userPath);
   userPath = path.resolve(userPath);
-  console.log("Ruta absoluta", userPath);
-  
+  console.log(userPath); 
 }
 
 // Viendo si el path ingresado es .md o directorio
@@ -75,7 +87,7 @@ if (userPathMd[1] === "md") {
       reject(err);
     })}})}
 
-// Leyendo archivo y adquiriendo la "opción sin opción" [{ href, text, file }]
+// Leyendo archivo 
 const readFile = path => {
   return new Promise((resolve, reject) => {
     fs.readFile(path, "utf-8", (err, data) => {
@@ -100,7 +112,6 @@ const readFile = path => {
   });
 };
 
-
 // Respuesta a opción sin opciones [{ href, text, file }]
 const nonOptions = path => {
   readFile(path)
@@ -116,19 +127,17 @@ const nonOptions = path => {
     });
 };
 
-
 // Respuesta a stats & validate /* Total: 3 Unique: 3 Broken: 1 */
-
 const statsAndValidate = path => {
   let counter = 0;
   readFile(path)
     .then(links => { 
       links.forEach(link => {
       fetchUrl(link.href, function(error, meta, body) {
-          if ( meta.status > 299 ){
-            counter++;
-            console.log(counter)
-          }
+      if ( meta.status > 299 ){
+      counter++;
+      console.log('Broken: ',counter)
+      }
     })
   }) 
 })
@@ -143,15 +152,14 @@ const validate = path => {
     .then(links => {
       links.forEach(link => {
         fetchUrl(link.href, function(error, meta, body) {   
-          console.log(path);    
-          console.log(link.href);
-          if ( meta.status < 299) {
-            console.log('OK')
-          } else if (meta.status > 299){    
-            console.log('FAIL')
+          console.log(path); 
+          console.log(chalk.white.bold(link.href));   
+          if (meta.status < 299) {
+            console.log(chalk.yellow(' OK '));
+          } else if (meta.status > 299){
+          console.log(chalk.white.bgRed.bold(' FAIL '));
           }
-          console.log(meta.status);
-        });
+        }); 
       });
     })
     .catch(err => {
@@ -164,13 +172,12 @@ const validate = path => {
   readFile(path)
   .then(links => {
       let totalLinks = links.length;
-      console.log('Total:', totalLinks);    
+      console.log(chalk.yellow('Total:', totalLinks));
         })
         .catch(err => {
           console.log(err);
-        });
-      }
-
+     });
+  }
 
 module.exports = {
   mdLinks,

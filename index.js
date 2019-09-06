@@ -31,7 +31,7 @@ if (
   Broken: 1 */
   options.validate = true;
   options.stats = true;
-  console.log("stats y validate");
+
   if (mdLinksJS.isDirectory(userPath)) {
     mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
       console.log(fileList);
@@ -50,7 +50,6 @@ else {
   process.argv[3] === "-v") 
 { /* ./some/example.md http://google.com/ ok 301 Google */
   options.validate = true;
-  console.log("validate");
 
   if (mdLinksJS.isDirectory(userPath)) {
       mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
@@ -71,7 +70,7 @@ else {
 { /* Total: 3
   Unique: 3 */
   options.stats = true;
-  console.log("stats"); 
+  
   if (mdLinksJS.isDirectory(userPath)) {
     mdLinksJS.getFilesFromDirectory(userPath).then(fileList => {
       fileList.forEach(file => {
@@ -96,7 +95,7 @@ if (mdLinksJS.isDirectory(userPath)) {
   }}
 
 mdLinksJS
-  .mdLinks(userPath, options) /* Me dice que no es una función */
+  .mdLinks(userPath, options)
   .then(res => {
     console.log("$$$$$$ soy res de la funcion mdLinks bb", res);
   })
