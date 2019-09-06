@@ -1,4 +1,32 @@
-{
-  "name": "md-links",
-  "version": "0.1.0"
+{ 
+  "name": "md-dm-links",
+  "version": "1.2.0",
+  "description": "Libreria para ver status de links en archivos markdown",
+  "scripts": {
+    "test": "jest --coverage",
+    "eslint": "eslint --ext .js src/ test/",
+    "pretest": "npm run eslint",
+    "deploy": "gh-pages -d src/"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "md-links": "./md-links-terminal.js"
+  },
+
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "eslint": "^6.2.1",
+    "eslint-plugin-jest": "^22.15.1",
+    "fetch": "^1.1.0",
+    "filehound": "^1.17.3",
+    "fs": "0.0.1-security",
+    "get-urls": "^9.1.0",
+    "jest": "^24.9.0",
+    "mark-markdown-down": "^1.0.0",
+    "markdown-link-extractor": "^1.2.1",
+    "marked": "^0.7.0",
+    "md-url-extractor": "^1.0.1",
+    "node-fetch": "^2.6.0",
+    "path": "^0.12.7"
+  }
 }
