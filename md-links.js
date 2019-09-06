@@ -134,10 +134,12 @@ const statsAndValidate = path => {
     .then(links => { 
       links.forEach(link => {
       fetchUrl(link.href, function(error, meta, body) {
-      if ( meta.status > 299 ){
-      counter++;
-      console.log('Broken: ',counter)
-      }
+        if(meta) {
+          if ( meta.status > 299 ){
+            counter++;
+            console.log('Broken: ',counter)
+            }
+        }
     })
   }) 
 })
@@ -154,12 +156,12 @@ const validate = path => {
         fetchUrl(link.href, function(error, meta, body) {   
           console.log(path); 
           console.log(chalk.white.bold(link.href));   
-          if (meta.status < 299) {
-            console.log(chalk.yellow(' OK '));
-          } else if (meta.status > 299){
+            if ( meta.status > 299 ){
+              console.log(chalk.yellow(' OK '));
+          } else if ( meta.status > 299 ){
           console.log(chalk.white.bgRed.bold(' FAIL '));
-          }
-        }); 
+          }}
+        ); 
       });
     })
     .catch(err => {

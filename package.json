@@ -1,12 +1,18 @@
-{
-  "name": "md-links",
-  "version": "0.1.0",
+{ 
+  "name": "@danimalistica/md-links",
+  "version": "1.0.0",
+  "description": "Libreria para ver status de links en archivos markdown",
   "scripts": {
     "test": "jest --coverage",
     "eslint": "eslint --ext .js src/ test/",
     "pretest": "npm run eslint",
     "deploy": "gh-pages -d src/"
   },
+  "preferGlobal": true,
+  "bin": {
+    "md-links": "./md-links-terminal.js"
+  },
+
   "dependencies": {
     "chalk": "^2.4.2",
     "eslint": "^6.2.1",
