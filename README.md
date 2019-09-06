@@ -8,6 +8,9 @@ Md-links es una librería de npm que debe ser implementada en Javascript y ser e
 
 ![enter image description here](https://lh3.googleusercontent.com/uNYh9gXQ5aEaWT58lL7bfhfIS1VxLH13nKhXYDsajl0rbOT1u9dEB6NruPFm89BHd-PX88EpqbVX5A)
 
+
+<img src= img/gif.gif>
+<img src= diagrama.png>
   
   
 
