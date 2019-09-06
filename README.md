@@ -69,6 +69,9 @@ Para el correcto funcionamiento, debes tener instalado [Node.js](https://nodejs.
 -  [Fetch](https://www.npmjs.com/package/fetch)
 -  [FileHound](https://www.npmjs.com/package/filehound)
 -  [Marked](https://www.npmjs.com/package/marked)
+-  [Markdown-link-extractor](https://www.npmjs.com/package/markdown-link-extractor)
+-  [Chalk](https://www.npmjs.com/package/chalk)
+
 
   
   

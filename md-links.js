@@ -63,7 +63,6 @@ const getFilesFromDirectory = userPath => {
     .find()
     .then(res => { 
       resolve(res) 
-      console.log(res);
     })
     .catch(err => {
       console.log(err);
