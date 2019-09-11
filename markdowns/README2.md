@@ -1,4 +1,5 @@
 ## **Índice**
+*  [1. Resumen del proyecto](#resumen-del-proyecto)
 *  [2. Resumen del producto](#poketmon-resumen-del-producto)
 *  [3. Planificación](#planificacion)
 *  [4. Proceso de Diseño](#proceso-de-diseno)

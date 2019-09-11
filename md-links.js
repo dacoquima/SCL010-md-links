@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fetch = require("fetch");
 fetchUrl = fetch.fetchUrl;
 const path = require("path");
@@ -136,16 +138,16 @@ const statsAndValidate = path => {
         if(meta) {
           if ( meta.status > 299 ){
             counter++;
-            console.log('Broken: ',counter)
-            }
-        }
+            console.log(chalk.yellow('Broken: ',counter));
+            console.log(chalk.yellow('Total:', links.length));
+          }
+        } 
     })
   }) 
 })
     .catch(err => {
       console.log(err);
     });  }  
-
 
 // Respuesta a opción validate (./some/example.md http://google.com/ ok 301 Google)
 const validate = path => {
@@ -154,10 +156,10 @@ const validate = path => {
       links.forEach(link => {
         fetchUrl(link.href, function(error, meta, body) {   
           console.log(path); 
-          console.log(chalk.white.bold(link.href));   
-            if ( meta.status > 299 ){
+          console.log(chalk.white.bold(link.href));  
+            if ( links.status < 299 ){
               console.log(chalk.yellow(' OK '));
-          } else if ( meta.status > 299 ){
+          } else if ( links.status > 299 ){
           console.log(chalk.white.bgRed.bold(' FAIL '));
           }}
         ); 

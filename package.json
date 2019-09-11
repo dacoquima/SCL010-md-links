@@ -1,6 +1,6 @@
-{ 
-  "name": "md-dm-links",
-  "version": "1.2.0",
+{
+  "name": "mddmlinks",
+  "version": "1.3.1",
   "description": "Libreria para ver status de links en archivos markdown",
   "scripts": {
     "test": "jest --coverage",
@@ -10,9 +10,8 @@
   },
   "preferGlobal": true,
   "bin": {
-    "md-links": "./md-links-terminal.js"
+    "md-links": "./md-links.js"
   },
-
   "dependencies": {
     "chalk": "^2.4.2",
     "eslint": "^6.2.1",
@@ -25,6 +24,7 @@
     "mark-markdown-down": "^1.0.0",
     "markdown-link-extractor": "^1.2.1",
     "marked": "^0.7.0",
+    "md-dm-links": "^1.3.1",
     "md-url-extractor": "^1.0.1",
     "node-fetch": "^2.6.0",
     "path": "^0.12.7"
